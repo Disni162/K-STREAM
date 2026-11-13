@@ -1,26 +1,186 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------
+   K-STREAM GLOBAL THEME
+-------------------------------- */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #07070b;
+  --surface: #11111a;
+  --rose: #f43f5e;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgba(190, 24, 93, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      ellipse at 90% 25%,
+      rgba(109, 40, 217, 0.08),
+      transparent 30%
+    ),
+    var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Text selection */
+::selection {
+  color: white;
+  background: rgba(244, 63, 94, 0.75);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f2632;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f43f5e;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(244, 63, 94, 0.8);
+  outline-offset: 3px;
+}
+
+/* Inputs */
+input {
+  color: white;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+/* Images */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Smooth transitions */
+button,
+a,
+input,
+img {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    opacity,
+    transform,
+    box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Movie cards */
+.group:hover {
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+/* Modal background */
+.fixed.inset-0 {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Hero section */
+section img {
+  transition: transform 8s ease;
+}
+
+section:hover img {
+  transform: scale(1.025);
+}
+
+/* Horizontal genre list */
+.overflow-x-auto {
+  scrollbar-width: none;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out both;
+}
+
+/* Mobile improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

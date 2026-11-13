@@ -39,3 +39,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# Dependencies
+**/node_modules/
+
+# Next.js build
+**/.next/
+**/out/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build files
+**/build/
+**/dist/
+
+# Local AI editor files
+.agents/
+.claude/
+.windsurf/
+
+# Nested duplicate project
+/k-stream/
